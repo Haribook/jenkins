@@ -6,6 +6,8 @@ https://www.devopslibrary.com/lessons/jenkins-ha
 
 http://container-solutions.com/running-docker-in-jenkins-in-docker/
 
+https://support.cloudbees.com/hc/en-us/articles/217517477-Maven-jobs-and-Java-versions-compatibility
+
 Tool chain solution for maven JDK6 builds 
 
   <plugin>
