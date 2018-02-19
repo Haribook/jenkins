@@ -5,3 +5,68 @@ https://www.devopslibrary.com/
 https://www.devopslibrary.com/lessons/jenkins-ha
 
 http://container-solutions.com/running-docker-in-jenkins-in-docker/
+
+Tool chain solution for maven JDK6 builds 
+
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.7.0</version>
+       <configuration>
+          <verbose>true</verbose>
+          <fork>true</fork>
+          <executable>${maven.compiler.executable}</executable>
+          <compilerVersion>1.3</compilerVersion>
+       </configuration>
+  </plugin>
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-toolchains-plugin</artifactId>
+    <version>1.1</version>
+    <executions>
+      <execution>
+        <goals>
+          <goal>toolchain</goal>
+        </goals>
+      </execution>
+    </executions>
+    <configuration>
+      <toolchains>
+        <jdk>
+          <version>1.6</version>
+          <vendor>sun</vendor>
+        </jdk>
+      </toolchains>
+    </configuration>
+  </plugin>
+
+  
+Reference it on the chaild poms  
+  
+   <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+   </plugin>
+   
+
+<build>
+  <plugins>   
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.7.0</version>
+       <configuration>
+          <verbose>true</verbose>
+          <fork>true</fork>
+          <executable>${maven.compiler.executable}</executable>
+          <compilerVersion>1.3</compilerVersion>
+       </configuration>
+  </plugin>
+</plugins>
+</build>
+
+
+ -Dmaven.compiler.source=1.6 
+ -Dmaven.compiler.target=1.6 
+ -Ddefault.java.version=1.6
+ -Ddefault.java.home=/var/jenkins_home/workspace/maven/jdk1.6.0_45
