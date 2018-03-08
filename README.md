@@ -72,3 +72,12 @@ Reference it on the chaild poms
  -Dmaven.compiler.target=1.6 
  -Ddefault.java.version=1.6
  -Ddefault.java.home=/var/jenkins_home/workspace/maven/jdk1.6.0_45
+ 
+ 
+ FROM jenkins/jenkins:2.89.4
+USER root
+RUN apt-get update && \
+    apt-get install -y sudo awscli && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+#    echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
+USER jenkins
